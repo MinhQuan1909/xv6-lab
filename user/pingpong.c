@@ -11,7 +11,6 @@ int main(int argc, char* argv[]){
 
     char byte='p';
     char byte2;
-    // argv[0] = "echo";
     if (fork()== 0) {
         close(0);
         // dup(p1[1]);
@@ -21,19 +20,14 @@ int main(int argc, char* argv[]){
         read(p[0],&byte2,1);
         close(p[0]);
 
-        if (byte2==byte){
             
-            int pid = getpid();
+        int pid = getpid();
 
-            printf("%d: received ping\n",pid);
+        printf("%d: received ping\n",pid);
         
-            write(p1[1],&byte,1);
+        write(p1[1],&byte2,1);
 
-            close(p1[1]);
-        }
-        else {
-            printf("wrong byte on ping!");
-        }
+        close(p1[1]);
 
     }
     else {
